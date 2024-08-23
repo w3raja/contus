@@ -1,0 +1,51 @@
+<section class="list">
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-2">
+            <h5>List of users: </h5>
+            <ul class="list-group">
+              @for (item of carts; track $index) {
+                <li class="list-group-item d-flex justify-content-between align-items-start" (click)="getUser($index)" >
+                    User ID: {{item.userId}}
+                    <span class="badge text-bg-primary rounded-pill">{{item.totalProducts}}</span>
+                </li>
+              } 
+            </ul>
+        </div>
+        <div class="col-md-10">
+            
+            @if (!showList) {  
+                <h5 class="text-center">List of products related to user</h5>
+                <p class="text-center"> Please click user id in the left column to show products.</p>  
+            }
+            <div class="row">
+                @if (showList) {
+                   <h5 class="text-center">List of products</h5>
+                   @for (item of userProduct; track $index) {
+                    <!-- <li>{{item.title}}</li> -->
+                    <div class="col-md-4 mb-4">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            {{item.title}}
+                        </div>
+                        <div class="card-body">
+                        <div class="discount"> {{item.discountPercentage}} % Discount</div>
+                        <img class="img-fluid" [src]="item.thumbnail"/>
+                          <p class="card-text p-0 m-0">Min quantity: <b>{{item.quantity}}</b> </p>
+                          <p class="card-text p-0 m-0">Price: <b>{{item.price | currency:'INR'}}</b> </p>
+                          <p class="card-text p-0 m-0">Total Discount: <b>{{item.discountedTotal | currency:'INR'}}</b></p>
+                          <p class="card-text p-0 m-0">Total Price: <b>{{item.total | currency:'INR'}}</b></p>
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                          <button class="btn btn-warning" (click)="addCart(item)">Add to cart</button>
+                        </div>
+                      </div>
+                    </div>
+                   }
+                }
+            </div>   
+        </div>
+    </div>
+</div>
+</section>

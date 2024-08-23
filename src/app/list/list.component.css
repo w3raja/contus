@@ -1,0 +1,16 @@
+.list{
+    min-height: 800px;
+}
+
+.list li{
+    /* margin-bottom: 15px; */
+    cursor: pointer;
+}
+
+.discount {
+    background-color: #ebc27678;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
